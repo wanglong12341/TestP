@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>通关保项目</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="../css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="../css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="../css/animate.css" rel="stylesheet">
+    <link href="../css/style.css?v=4.1.0" rel="stylesheet">
+    <link href="../css/jsonview/jquery.json-viewer.css" type="text/css" rel="stylesheet">
+    <script >
+            // var doman = "http://localhost:8011";
+        var doman = "http://172.20.20.2:8011";
+        function postsx() {
+            var radiosx = getRadioBoxValue("radiosx");
+            var testqy = getInputValue("textqy");
+
+            $('#loading').show();
+            $.ajax({
+                type: "get",
+                url: doman+"/jbzDeleteInfo?env=" + radiosx+"&id="+testqy,
+                dataType: "json",
+                success:function (data) {
+                    if(data){
+                        $('#jsonsx').jsonViewer(data);
+                        $('#loading').hide();
+                        console.log(data);
+                    } else {
+
+                    }
+                },
+                error:function (jqXHR) {
+                    $('#loading').hide();
+                    $('#jsonsx').jsonViewer(jqXHR.responseText);
+
+                }
+            });
+        }
+        function postfk() {
+            var radiofk = getRadioBoxValue("radiofk");
+            var creditId = getInputValue("textfk");
+            console.log(creditId);
+            $('#loading').show();
+            $.ajax({
+                type: "get",
+                url: doman+"/sytFKHD?env="+radiofk+"&creditId="+creditId,
+                dataType:"json",
+                success:function (data) {
+                    if(data){
+                        $('#jsonfk').jsonViewer(data);
+                        $('#loading').hide();
+                        console.log(data);
+                    } else {
+                        
+                    }
+                },
+                error:function (jqXHR) {
+                    $('#loading').hide();
+                    alert("发生错误："+jqXHR.responseText);
+                }
+            });
+        }
+        function postkl() {
+            var radiokl = getRadioBoxValue("radiokl");
+            var klcreditId = getInputValue("textkl");
+            $('#loading').show();
+            $.ajax({
+                type: "get",
+                url:doman+"/sytDB?env="+radiokl+"&creditId="+klcreditId,
+                dataType:"json",
+                success:function (data) {
+                    if(data){
+                        $('#jsonkl').jsonViewer(data);
+                        $('#loading').hide();
+                        console.log(data);
+                    } else {
+
+                    }
+                 } ,
+                error:function (jqXHR) {
+                    $('#loading').hide();
+                    alert("发生错误：" +jqXHR.responseText);
+                }
+            });
+        }
+        function postsc() {
+            var radiosc = getRadioBoxValue("radiosc");
+            var guaranteeId = getInputValue("textsc");
+            $('#loading').show();
+            $.ajax({
+                type:"get",
+                url:doman+"/sytJF?env="+radiosc+"&guaranteeId="+guaranteeId,
+                dataType:"json",
+                success:function (data) {
+                    if(data){
+                        $('#jsonsc').jsonViewer(data);
+                        $('#loading').hide();
+                        console.log(data);
+                    } else {
+
+                    }
+                },
+                error:function (jqXHR) {
+                    $('#loading').hide();
+                    alert("发生错误："+jqXHR.responseText);
+                }
+            });
+        }
+        function postyj() {
+            var radioyj= getRadioBoxValue("radioyj");
+            var creditIdyj= getInputValue("textyj");
+            var dateyj= getInputValue("dateyj");
+            console.log(dateyj);
+            $('#loading').show();
+            $.ajax({
+                type:"get",
+                url:doman+"/sytYJTJ?env="+radioyj+"&creditId="+creditIdyj+"&touchWarningDate="+dateyj,
+                dataType:"json",
+                success:function (data) {
+                    if(data){
+                        $('#jsonyj').jsonViewer(data);
+                        $('#loading').hide();
+                        console.log(data);
+                    } else {
+
+                    }
+                },
+                error:function (jqXHR) {
+                    $('#loading').hide();
+                    alert("发生错误："+jqXHR.responseText);
+                }
+            });
+        }
+        function getRadioBoxValue(radioName) {
+            var radio = document.getElementsByName(radioName);
+            for (i = 0; i < radio.length ; i++ ){
+                if(radio[i].checked){
+                    return radio[i].value;
+                }
+            }
+        }
+        function getInputValue(inputId) {
+            var input = document.getElementById(inputId);
+            return input.value ;
+        }
+
+    </script>
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div id="loading" style="position: fixed;top: 0;right: 0;left: 0;bottom: 0;background-color: rgba(0,0,0,0.2);z-index: 10;display: none">
+        <div class="sk-spinner sk-spinner-cube-grid" style="position: fixed;top: 49%;left: 49%">
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>接口功能简介</h5>
+                </div>
+                <div class="ibox-content">
+                    <p>健步走服务如下：</p>
+                    <ul>
+                        <li>1.重置用户状态清除用户运动信息</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>1.重置用户状态清除用户运动信息</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" id="commentForm" onsubmit="return false" action="##" method="get">
+                        <div>
+                            <label class="col-sm-3 control-label">环境：</label>
+                            <label><input type="radio" name="radiosx" value="test" checked="true">test</label>&nbsp;&nbsp;
+                            <label><input type="radio" name="radiosx" value="qa">qa</label>&nbsp;&nbsp;
+                            <label><input type="radio" name="radiosx" value="product">product</label>
+                        </div>
+                        <br>
+                        <div>
+                            <label class="col-sm-3 control-label">请输入用户ID：</label>
+                            <label><input type="text" id="textqy" style="width: 400px;length:20px" value="" placeholder="管理平台对应的用户ID"></label>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">返回结果：</label>
+                            <div class="col-sm-8">
+                                <pre id="jsonsx">
+
+                                </pre>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" onclick="postsx()">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- 全局js -->
+<script src="../js/jquery.min.js?v=2.1.4"></script>
+<script src="../js/bootstrap.min.js?v=3.3.6"></script>
+
+<!-- 自定义js -->
+<script src="../js/content.js?v=1.0.0"></script>
+
+<!-- jQuery Validation plugin javascript-->
+<script src="../js/plugins/validate/jquery.validate.min.js"></script>
+<script src="../js/plugins/validate/messages_zh.min.js"></script>
+
+<script src="../js/demo/form-validate-demo.js"></script>
+<script src="../js/jsonview/jquery.json-viewer.js"></script>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+<!--统计代码，可删除-->
+</body>
+</html>

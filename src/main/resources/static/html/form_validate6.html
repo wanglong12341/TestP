@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>签章平台-企业业务</title>
+    <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+    <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="../css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="../css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="../css/animate.css" rel="stylesheet">
+    <link href="../css/style.css?v=4.1.0" rel="stylesheet">
+    <link href="../css/jsonview/jquery.json-viewer.css" type="text/css" rel="stylesheet">
+    <script>
+        /*103方法http://platform-test.igfax.net   http://172.20.20.2:8011*/
+        var doman = "";
+        // var doman = "http://172.20.20.2:8011";
+        function post1() {
+            var radioValue = getRadioBoxValue("radio1");
+            var contractHandleCode =getInputValue("contractHandleCode");
+            var contractConfigCode =getInputValue("contractConfigCode");
+            var sourceCode =getSelectValue("sourceCode");
+            var isnew =getRadioBoxValue("morePage");
+            $('#loading').show();
+            $.ajax({
+                type: "get",
+                url: doman+"/qzptXXJ?env=" + radioValue+"&contractHandleCode="+contractHandleCode+"&contractConfigCode="+contractConfigCode+"&sourceCode="+sourceCode+"&isnew="+isnew,
+                dataType: "json",
+                success: function (data) {
+                    if (data) {
+                        //p103.innerHTML = JSON.stringify(data.content['103'].result);
+                        $('#json1').jsonViewer(data.data);
+                        $('#json-renderer').jsonViewer(data.response);
+                        $('#loading').hide();
+                        console.log(data.content);
+                    } else {
+
+                    }
+                },
+                error: function (jqXHR) {
+                    $('#loading').hide();
+                    alert("发生错误：" + jqXHR.responseText);
+                }
+            });
+        }
+
+        /*103方法*/
+        function post2() {
+            var radioValue = getRadioBoxValue("radio2");
+            var businessCode = getInputValue("businessCode");
+            var uscEnterpriseNum = getInputValue("uscEnterpriseNum");
+            var sourceCode = getSelectValue("sourceCode2");
+            $('#loading').show();
+            $.ajax({
+                type: "get",
+                url:  doman+"/qzptXXJQYRZ?env=" + radioValue+"&businessCode="+businessCode+"&uscEnterpriseNum="+uscEnterpriseNum+"&sourceCode="+sourceCode,
+                dataType: "json",
+                success: function (data) {
+                    if (data) {
+                        /*p103.innerHTML = "101返回结果："+JSON.stringify(data.content['101'].result)+"\\n"+"103返回结果:"+JSON.stringify(data.content['103'].result);*/
+                        $('#json2').jsonViewer(data.data);
+                        $('#json-renderer1').jsonViewer(data.response);
+
+                        $('#loading').hide();
+                        console.log(data.content);
+                    } else {
+
+                    }
+                },
+                error: function (jqXHR) {
+                    $('#loading').hide();
+                    alert("发生错误：" + jqXHR.responseText);
+                }
+            });
+        }
+        /*103方法*/
+        function post3() {
+            var radioValue = getRadioBoxValue("radio3");
+            var uscEnterpriseNum = getInputValue("uscEnterpriseNum1");
+            var contractConfigCode = getInputValue("contractConfigCode1");
+            var contractHandleCode = getInputValue("contractHandleCode1");
+            var isnew = getRadioBoxValue("morePage1");
+            var sourceCode = getSelectValue("sourceCode3");
+            $('#loading').show();
+            $.ajax({
+                type: "get",
+                url:  doman+"/qzptXXJQY?env=" + radioValue+"&uscEnterpriseNum="+uscEnterpriseNum+"&isnew="+isnew+"&sourceCode="+sourceCode+"&contractHandleCode="+contractHandleCode+"&contractConfigCode="+contractConfigCode,
+
+                dataType: "json",
+                success: function (data) {
+                    if (data) {
+
+                        /*p103.innerHTML = "101返回结果："+JSON.stringify(data.content['101'].result)+"\\n"+"103返回结果:"+JSON.stringify(data.content['103'].result);*/
+                        $('#json3').jsonViewer(data.data);
+                        $('#json-renderer3').jsonViewer(data.response);
+
+                        $('#loading').hide();
+                        console.log(data.content);
+                    } else {
+
+                    }
+                },
+                error: function (jqXHR) {
+                    $('#loading').hide();
+                    alert("发生错误：" + jqXHR.responseText);
+                }
+            });
+        }
+        function post4() {
+            var radioValue = getRadioBoxValue("radio4");
+            var contractCode = getInputValue("contractCode");
+
+            $('#loading').show();
+            $.ajax({
+                type: "get",
+                url: doman+"/qzptXXJQYHTCX?env=" + radioValue+"&contractCode="+contractCode,
+                dataType: "json",
+                success: function (data) {
+                    if (data) {
+                        /*p103.innerHTML = "101返回结果："+JSON.stringify(data.content['101'].result)+"\\n"+"103返回结果:"+JSON.stringify(data.content['103'].result);*/
+                        $('#json4').jsonViewer(data.data);
+                        $('#json-renderer4').jsonViewer(data.response);
+                        $('#loading').hide();
+                        console.log(data.content);
+                    } else {
+
+                    }
+                },
+                error: function (jqXHR) {
+                    $('#loading').hide();
+                    alert("发生错误：" + jqXHR.responseText);
+                }
+            });
+        }
+
+        function getRadioBoxValue(radioName) {
+            var radio = document.getElementsByName(radioName);
+            for (i = 0; i < radio.length; i++) {
+                if (radio[i].checked) {
+                    return radio[i].value;
+                }
+            }
+        }
+        function getInputValue(input) {
+            var input1 = document.getElementById(input);
+            return input1.value;
+        }
+        function getSelectValue(select) {
+            var select1 = document.getElementById(select);
+            return select1.value;
+        }
+
+
+    </script>
+
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div id="loading"
+         style="position: fixed;top: 0;right: 0;left: 0;bottom: 0;background-color: rgba(0,0,0,0.2);z-index: 10;display: none">
+        <div class="sk-spinner sk-spinner-cube-grid" style="position: fixed;top: 49%;left: 49%">
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>接口功能简介</h5>
+
+                </div>
+                <div class="ibox-content">
+                    <p>企业对外接口服务如下：</p>
+                    <ul>
+                        <li>1.企业内签</li>
+                        <li>2.企业认证</li>
+                        <li>3.企业外签</li>
+                        <li>4.企业合同地址查询</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>1.企业内签</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+
+                    </div>
+                </div>
+                <div class="ibox-content1">
+                    <form class="form-horizontal m-t" id="commentForm" onsubmit="return false" action="##" method="get">
+                        <div>
+                            <label class="col-sm-2 control-label">环境：</label>
+
+                            <label><input type="radio" name="radio1" value="test" checked="true">test</label>&nbsp;
+                            &nbsp;
+                            <label><input type="radio" name="radio1" value="qa">qa</label>&nbsp;&nbsp;
+                            <label><input type="radio" name="radio1" value="product">product</label>
+                        </div>
+                        <br>
+                        <div>
+                            <label class="col-sm-2 control-label">合同模板：</label>
+                            <label><input type="radio" name="morePage" value="y" >33页合同</label>&nbsp;
+                            <label><input type="radio" name="morePage" value="n" checked="flase">单页合同</label>&nbsp;
+                        </div>
+                        <br>
+                        <div>
+                            <label class="col-sm-2 control-label">渠道：</label>
+                            <label><select id="sourceCode">
+                                <option value ="XYJ">信易佳</option>
+                            </select></label>&nbsp;
+
+                        </div>
+                        <br>
+                        <div>
+                            <label class="col-sm-2 control-label"></label>
+                            合同类别code(contractConfigCode):<input type="text" id="contractConfigCode" style="display: inline;width: 240px" value="1f6b68e4a0a04619a30c7ec1e9dcc191" >
+
+                        </div>
+                        <br>
+                        <div>
+                            <label class="col-sm-2 control-label"></label>
+                            合同处理code(contractHandleCode):<input type="text" id="contractHandleCode" style="display: inline" value="XYJFILLTIME" >
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">请求参数：</label>
+                            <div class="col-sm-8">
+                                <pre id="json1">
+
+                                </pre>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">返回结果：</label>
+                            <div class="col-sm-8">
+                                <pre id="json-renderer">
+                                    <!--<textarea id="103" name="comment" class="form-control"></textarea>-->
+                                </pre>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" onclick="post1()">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>2.企业认证</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+
+                    </div>
+                </div>
+                <div class="ibox-content1">
+                    <form class="form-horizontal m-t" id="commentForm1" onsubmit="return false" action="##"
+                          method="get">
+                        <div>
+                            <label class="col-sm-2 control-label">环境：</label>
+
+                            <label><input type="radio" name="radio2" value="test" checked="true">test</label>&nbsp;
+                            &nbsp;
+                            <label><input type="radio" name="radio2" value="qa">qa</label>&nbsp;&nbsp;
+                            <label><input type="radio" name="radio2" value="product">product</label>
+                        </div>
+                        <br>
+                        <div>
+                            <label class="col-sm-2 control-label">渠道：</label>
+                            <label><select id="sourceCode2">
+                                <option value ="XYJ">信易佳</option>
+
+
+                            </select></label>&nbsp;
+
+                        </div>
+                        <br>
+                        <div>
+                            <label class="col-sm-2 control-label"></label>
+                            项目ID（businessCode）：<input type="text" id="businessCode" style="display: inline;width: 240px" value="41a7ef8dcbb941b7a4c021413bb4ad84" placeholder="请输入认证流水号">
+                        </div>
+                        <br>
+                        <div>
+                            <label class="col-sm-2 control-label"></label>
+                            企业证件号码（uscEnterpriseNum）：<input type="text" id="uscEnterpriseNum" style="display: inline;width: 240px" value="" placeholder="请输入企业证件号码">
+                        </div>
+                        <br>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">请求参数：</label>
+                            <div class="col-sm-8">
+                                <pre id="json2">
+
+                                </pre>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">返回结果：</label>
+                            <div class="col-sm-8">
+
+                                <pre id="json-renderer1">
+                                    <!--<textarea id="103" name="comment" class="form-control"></textarea>-->
+                                    </pre>
+
+                                <!--<textarea id="p102" name="comment" class="form-control"></textarea>-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" onclick="post2()">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>3.企业外签</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+
+                    </div>
+                </div>
+                <div class="ibox-content1">
+                    <form class="form-horizontal m-t" id="commentForm3" onsubmit="return false" action="##"
+                          method="get">
+                        <div>
+                            <label class="col-sm-2 control-label">环境：</label>
+
+                            <label><input type="radio" name="radio3" value="test" checked="true">test</label>&nbsp;
+                            &nbsp;
+                            <label><input type="radio" name="radio3" value="qa">qa</label>&nbsp;&nbsp;
+                            <label><input type="radio" name="radio3" value="product">product</label>
+                        </div>
+                        <div>
+                            <label class="col-sm-2 control-label">合同模板：</label>
+                            <label><input type="radio" name="morePage1" value="y" >33页合同</label>&nbsp;
+                            <label><input type="radio" name="morePage1" value="n" checked="true">单页合同</label>&nbsp;
+                        </div>
+                        <br>
+                        <div>
+                            <label class="col-sm-2 control-label">渠道：</label>
+                            <label><select id="sourceCode3">
+                                <option value ="XYJ">信易佳</option>
+                            </select></label>&nbsp;
+                        </div>
+                        <br>
+                        <div>
+                            <label class="col-sm-2 control-label"></label>
+                            企业证件号码（uscEnterpriseNum）：<input type="text" id="uscEnterpriseNum1" style="display: inline;width: 240px  " value="" placeholder="请输入已认证企业证件号码">
+                        </div>
+                        <br>
+                        <div>
+                            <label class="col-sm-2 control-label"></label>
+                            合同类别code(contractConfigCode)：<input type="text" id="contractConfigCode1" style="display: inline;width: 240px" value="abb6064258a645ffada405b6cd3ee6a6" >
+                        </div>
+                        <br>
+                        <div>
+                            <label class="col-sm-2 control-label"></label>
+                            合同处理code(contractHandleCode)：<input type="text" id="contractHandleCode1" style="display: inline" value="XYJFILLTIME" >
+
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">请求参数：</label>
+                            <div class="col-sm-8">
+                                <pre id="json3">
+
+                                </pre>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">返回结果：</label>
+                            <div class="col-sm-8">
+
+                                <pre id="json-renderer3">
+                                    <!--<textarea id="103" name="comment" class="form-control"></textarea>-->
+                                    </pre>
+
+                                <!--<textarea id="p102" name="comment" class="form-control"></textarea>-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" onclick="post3()">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>4.企业合同地址查询</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+
+                    </div>
+                </div>
+                <div class="ibox-content1">
+                    <form class="form-horizontal m-t" id="commentForm4" onsubmit="return false" action="##"
+                          method="get">
+                        <div>
+                            <label class="col-sm-2 control-label">环境：</label>
+
+                            <label><input type="radio" name="radio4" value="test" checked="true">test</label>&nbsp;
+                            &nbsp;
+                            <label><input type="radio" name="radio4" value="qa">qa</label>&nbsp;&nbsp;
+                            <label><input type="radio" name="radio4" value="product">product</label>
+                        </div>
+                        <br>
+                        <div>
+                            <label class="col-sm-2 control-label"></label>
+                            合同编号（contractCode）：<input type="text" id="contractCode" style="display: inline;width: 240px" value="" placeholder="请输入企业签章返回的合同编号">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">请求参数：</label>
+                            <div class="col-sm-8">
+                                <pre id="json4">
+
+                                </pre>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">返回结果：</label>
+                            <div class="col-sm-8">
+
+                                <pre id="json-renderer4">
+                                    <!--<textarea id="103" name="comment" class="form-control"></textarea>-->
+                                    </pre>
+
+                                <!--<textarea id="p102" name="comment" class="form-control"></textarea>-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" onclick="post4()">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- 全局js -->
+<script src="../js/jquery.min.js?v=2.1.4"></script>
+<script src="../js/bootstrap.min.js?v=3.3.6"></script>
+
+<!-- 自定义js -->
+<script src="../js/content.js?v=1.0.0"></script>
+
+<!-- jQuery Validation plugin javascript-->
+<script src="../js/plugins/validate/jquery.validate.min.js"></script>
+<script src="../js/plugins/validate/messages_zh.min.js"></script>
+
+<script src="../js/demo/form-validate-demo.js"></script>
+<script src="../js/jsonview/jquery.json-viewer.js"></script>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+<!--统计代码，可删除-->
+
+</body>
+
+</html>

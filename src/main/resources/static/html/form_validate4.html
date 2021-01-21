@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>签章平台-个人业务</title>
+    <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+    <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="../css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="../css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="../css/animate.css" rel="stylesheet">
+    <link href="../css/style.css?v=4.1.0" rel="stylesheet">
+    <link href="../css/jsonview/jquery.json-viewer.css" type="text/css" rel="stylesheet">
+    <script>
+        // var doman = "http://platform-test.igfax.net";
+        var doman = "";
+        /*103方法*/
+        function post1() {
+            var radioValue = getRadioBoxValue("radio1");
+            var idCardNum =getInputValue("idCardNum");
+            var phone =getInputValue("phone");
+            var businessCode =getInputValue("businessCode");
+            var realName =getInputValue("realName");
+            $('#loading').show();
+            $.ajax({
+                type: "get",
+                url: doman+"/xyjNewRz?env=" + radioValue+"&idCardNum="+idCardNum+"&phone="+phone+"&realName="+realName+"&businessCode="+businessCode,
+                dataType: "json",
+                success: function (data) {
+                    if (data) {
+                        //p103.innerHTML = JSON.stringify(data.content['103'].result);
+                        $('#json1').jsonViewer(data.data);
+                        $('#json-renderer').jsonViewer(data.response);
+                        $('#loading').hide();
+                        console.log(data.content);
+                    } else {
+
+                    }
+                },
+                error: function (jqXHR) {
+                    alert("发生错误：" + jqXHR.responseText);
+                }
+            });
+        }
+
+        /*103方法*/
+        function post2() {
+            var radioValue = getRadioBoxValue("radio2");
+            var certifiedNum = getInputValue("certifiedNum");
+            $('#loading').show();
+            $.ajax({
+                type: "get",
+                url: doman+"/xyjGRRZCX?env=" + radioValue+"&certifiedNum="+certifiedNum,
+                dataType: "json",
+                success: function (data) {
+                    if (data) {
+                        /*p103.innerHTML = "101返回结果："+JSON.stringify(data.content['101'].result)+"\\n"+"103返回结果:"+JSON.stringify(data.content['103'].result);*/
+                        $('#json2').jsonViewer(data.data);
+                        $('#json-renderer1').jsonViewer(data.response);
+
+                        $('#loading').hide();
+                        console.log(data.content);
+                    } else {
+
+                    }
+                },
+                error: function (jqXHR) {
+                    alert("发生错误：" + jqXHR.responseText);
+                }
+            });
+        }
+        /*103方法*/
+        function post3() {
+            var radioValue = getRadioBoxValue("radio3");
+            var certifiedNum = getInputValue("certifiedNum1");
+            var contractConfigCode = getInputValue("contractConfigCode");
+            $('#loading').show();
+            $.ajax({
+                type: "get",
+                url: doman+"/xyjNewContract?env=" + radioValue+"&certifiedNum="+certifiedNum+"&contractConfigCode="+contractConfigCode,
+                dataType: "json",
+                success: function (data) {
+                    if (data) {
+                        /*p103.innerHTML = "101返回结果："+JSON.stringify(data.content['101'].result)+"\\n"+"103返回结果:"+JSON.stringify(data.content['103'].result);*/
+                        $('#json3').jsonViewer(data.data);
+                        $('#json-renderer3').jsonViewer(data.response);
+
+                        $('#loading').hide();
+                        console.log(data.content);
+                    } else {
+
+                    }
+                },
+                error: function (jqXHR) {
+                    alert("发生错误：" + jqXHR.responseText);
+                }
+            });
+        }
+        function post4() {
+            var radioValue = getRadioBoxValue("radio4");
+            var orderId = getInputValue("orderId");
+
+            $('#loading').show();
+            $.ajax({
+                type: "get",
+                url: doman+"/xyjGRHTCX?env=" + radioValue+"&orderId="+orderId,
+                dataType: "json",
+                success: function (data) {
+                    if (data) {
+                        /*p103.innerHTML = "101返回结果："+JSON.stringify(data.content['101'].result)+"\\n"+"103返回结果:"+JSON.stringify(data.content['103'].result);*/
+                        $('#json4').jsonViewer(data.data);
+                        $('#json-renderer4').jsonViewer(data.response);
+                        $('#loading').hide();
+                        console.log(data.content);
+                    } else {
+
+                    }
+                },
+                error: function (jqXHR) {
+                    alert("发生错误：" + jqXHR.responseText);
+                }
+            });
+        }
+
+        function getRadioBoxValue(radioName) {
+            var radio = document.getElementsByName(radioName);
+            for (i = 0; i < radio.length; i++) {
+                if (radio[i].checked) {
+                    return radio[i].value;
+                }
+            }
+        }
+        function getInputValue(input) {
+            var input1 = document.getElementById(input);
+            return input1.value;
+        }
+
+
+    </script>
+
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div id="loading"
+         style="position: fixed;top: 0;right: 0;left: 0;bottom: 0;background-color: rgba(0,0,0,0.2);z-index: 10;display: none">
+        <div class="sk-spinner sk-spinner-cube-grid" style="position: fixed;top: 49%;left: 49%">
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>接口功能简介</h5>
+
+                </div>
+                <div class="ibox-content">
+                    <p>个人对外接口服务如下：</p>
+                    <ul>
+                        <li>1.个人认证申请</li>
+                        <li>2.个人认证结果查询</li>
+                        <li>3.个人签章申请</li>
+                        <li>4.个人签章结果查询</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>1.调用个人认证申请</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+
+                    </div>
+                </div>
+                <div class="ibox-content1">
+                    <form class="form-horizontal m-t" id="commentForm" onsubmit="return false" action="##" method="get">
+                        <div>
+                            <label class="col-sm-2 control-label">环境：</label>
+
+                            <label><input type="radio" name="radio1" value="test" checked="true">test</label>&nbsp;
+                            &nbsp;
+                            <label><input type="radio" name="radio1" value="qa">qa</label>&nbsp;&nbsp;
+                            <label><input type="radio" name="radio1" value="product">product</label>
+                        </div>
+                        <br>
+                        <div>
+                            <label class="col-sm-2 control-label">姓名:</label>
+                            <input type="text" id="realName" style="display: inline" value="" placeholder="请输入姓名">
+                        </div>
+                        <br>
+                        <div>
+                            <label class="col-sm-2 control-label">手机号:</label>
+                            <input type="text" id="phone" style="display: inline" value="" placeholder="请输入手机号">
+                        </div>
+                        <br>
+                        <div>
+                            <label class="col-sm-2 control-label">身份证号:</label>
+                            <input type="text" id="idCardNum" style="display: inline" value="" placeholder="请输入身份证号">
+                        </div>
+                        <br>
+                        <div>
+                            <label class="col-sm-2 control-label">businessCode:</label>
+                            <input type="text" id="businessCode" style="display: inline;width:240px" value="f358e8bfb67342428427870c89bde4e4" placeholder="请输入businessCode">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">请求参数：</label>
+                            <div class="col-sm-8">
+                                <pre id="json1">
+
+                                </pre>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">返回结果：</label>
+                            <div class="col-sm-8">
+                                <pre id="json-renderer">
+                                    <!--<textarea id="103" name="comment" class="form-control"></textarea>-->
+                                </pre>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" onclick="post1()">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>2.个人认证结果查询</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+
+                    </div>
+                </div>
+                <div class="ibox-content1">
+                    <form class="form-horizontal m-t" id="commentForm1" onsubmit="return false" action="##"
+                          method="get">
+                        <div>
+                            <label class="col-sm-2 control-label">环境：</label>
+
+                            <label><input type="radio" name="radio2" value="test" checked="true">test</label>&nbsp;
+                            &nbsp;
+                            <label><input type="radio" name="radio2" value="qa">qa</label>&nbsp;&nbsp;
+                            <label><input type="radio" name="radio2" value="product">product</label>
+                        </div>
+                        <br>
+                        <div>
+                            <label class="col-sm-2 control-label">认证流水号:</label>
+                            <input type="text" id="certifiedNum" style="display: inline" value="" placeholder="请输入认证流水号">
+
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">请求参数：</label>
+                            <div class="col-sm-8">
+                                <pre id="json2">
+
+                                </pre>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">返回结果：</label>
+                            <div class="col-sm-8">
+
+                                <pre id="json-renderer1">
+                                    <!--<textarea id="103" name="comment" class="form-control"></textarea>-->
+                                    </pre>
+
+                                <!--<textarea id="p102" name="comment" class="form-control"></textarea>-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" onclick="post2()">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>3.个人签章申请</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+
+                    </div>
+                </div>
+                <div class="ibox-content1">
+                    <form class="form-horizontal m-t" id="commentForm2" onsubmit="return false" action="##"
+                          method="get">
+                        <div>
+                            <label class="col-sm-2 control-label">环境：</label>
+
+                            <label><input type="radio" name="radio3" value="test" checked="true">test</label>&nbsp;
+                            &nbsp;
+                            <label><input type="radio" name="radio3" value="qa">qa</label>&nbsp;&nbsp;
+                            <label><input type="radio" name="radio3" value="product">product</label>
+                        </div>
+                        <br>
+                        <div>
+                            <label class="col-sm-2 control-label">认证流水号:</label>
+                            <input type="text" id="certifiedNum1" style="display: inline" value="" placeholder="请输入认证流水号">
+                        </div>
+                        <br>
+                        <div>
+                            <label class="col-sm-2 control-label">contractConfigCode:</label>
+                            <input type="text" id="contractConfigCode" style="display: inline;width:240px" value="e6e94da6a69b45e59f214a84a6d6e380" placeholder="请输入contractConfigCode">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">请求参数：</label>
+                            <div class="col-sm-8">
+                                <pre id="json3">
+
+                                </pre>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">返回结果：</label>
+                            <div class="col-sm-8">
+
+                                <pre id="json-renderer3">
+                                    <!--<textarea id="103" name="comment" class="form-control"></textarea>-->
+                                    </pre>
+
+                                <!--<textarea id="p102" name="comment" class="form-control"></textarea>-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" onclick="post3()">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>4.个人签章结果查询</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+
+                    </div>
+                </div>
+                <div class="ibox-content1">
+                    <form class="form-horizontal m-t" id="commentForm3" onsubmit="return false" action="##"
+                          method="get">
+                        <div>
+                            <label class="col-sm-2 control-label">环境：</label>
+
+                            <label><input type="radio" name="radio4" value="test" checked="true">test</label>&nbsp;
+                            &nbsp;
+                            <label><input type="radio" name="radio4" value="qa">qa</label>&nbsp;&nbsp;
+                            <label><input type="radio" name="radio4" value="product">product</label>
+                        </div>
+                        <br>
+                        <div>
+                            <label class="col-sm-2 control-label">订单号:</label>
+                            <input type="text" id="orderId" style="display: inline" value="" placeholder="请输入订单号">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">请求参数：</label>
+                            <div class="col-sm-8">
+                                <pre id="json4">
+
+                                </pre>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">返回结果：</label>
+                            <div class="col-sm-8">
+
+                                <pre id="json-renderer4">
+                                    <!--<textarea id="103" name="comment" class="form-control"></textarea>-->
+                                    </pre>
+
+                                <!--<textarea id="p102" name="comment" class="form-control"></textarea>-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" onclick="post4()">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- 全局js -->
+<script src="../js/jquery.min.js?v=2.1.4"></script>
+<script src="../js/bootstrap.min.js?v=3.3.6"></script>
+
+<!-- 自定义js -->
+<script src="../js/content.js?v=1.0.0"></script>
+
+<!-- jQuery Validation plugin javascript-->
+<script src="../js/plugins/validate/jquery.validate.min.js"></script>
+<script src="../js/plugins/validate/messages_zh.min.js"></script>
+
+<script src="../js/demo/form-validate-demo.js"></script>
+<script src="../js/jsonview/jquery.json-viewer.js"></script>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+<!--统计代码，可删除-->
+
+</body>
+
+</html>

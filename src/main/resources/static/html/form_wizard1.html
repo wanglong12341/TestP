@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>通关保项目</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="../css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="../css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="../css/animate.css" rel="stylesheet">
+    <link href="../css/style.css?v=4.1.0" rel="stylesheet">
+    <link href="../css/jsonview/jquery.json-viewer.css" type="text/css" rel="stylesheet">
+    <script >
+             var doman = "";
+        //var doman = "http://172.20.20.2:8011";
+        function postsx() {
+            var radiosx = getRadioBoxValue("radiosx");
+            var testqy = getInputValue("textqy");
+            var testty = getInputValue("textty");
+            $('#loading').show();
+            $.ajax({
+                type: "get",
+                url: doman+"/sytSX?env=" + radiosx+"&enterpriseName="+testqy+"&uniformSocialCreditCode="+testty ,
+                dataType: "json",
+                success:function (data) {
+                    if(data){
+                        $('#jsonqq').jsonViewer(data.data)
+                        $('#jsonsx').jsonViewer(data.response);
+                        $('#loading').hide();
+                        console.log(data);
+                    } else {
+
+                    }
+                },
+                error:function (jqXHR) {
+                    $('#loading').hide();
+                    alert("发生错误：" + jqXHR.responseText);
+                }
+            });
+        }
+        function postfk() {
+            var radiofk = getRadioBoxValue("radiofk");
+            var creditId = getInputValue("textfk");
+            console.log(creditId);
+            $('#loading').show();
+            $.ajax({
+                type: "get",
+                url: doman+"/sytFKHD?env="+radiofk+"&creditId="+creditId,
+                dataType:"json",
+                success:function (data) {
+                    if(data){
+                        $('#jsonqqfk').jsonViewer(data.data);
+                        $('#jsonfk').jsonViewer(data.response);
+                        $('#loading').hide();
+                        console.log(data);
+                    } else {
+                        
+                    }
+                },
+                error:function (jqXHR) {
+                    $('#loading').hide();
+                    alert("发生错误："+jqXHR.responseText);
+                }
+            });
+        }
+        function postkl() {
+            var radiokl = getRadioBoxValue("radiokl");
+            var klcreditId = getInputValue("textkl");
+            $('#loading').show();
+            $.ajax({
+                type: "get",
+                url:doman+"/sytDB?env="+radiokl+"&creditId="+klcreditId,
+                dataType:"json",
+                success:function (data) {
+                    if(data){
+                        $('#jsonqqkl').jsonViewer(data.data);
+                        $('#jsonkl').jsonViewer(data.response);
+                        $('#loading').hide();
+                        console.log(data);
+                    } else {
+
+                    }
+                 } ,
+                error:function (jqXHR) {
+                    $('#loading').hide();
+                    alert("发生错误：" +jqXHR.responseText);
+                }
+            });
+        }
+        function postsc() {
+            var radiosc = getRadioBoxValue("radiosc");
+            var guaranteeId = getInputValue("textsc");
+            $('#loading').show();
+            $.ajax({
+                type:"get",
+                url:doman+"/sytJF?env="+radiosc+"&guaranteeId="+guaranteeId,
+                dataType:"json",
+                success:function (data) {
+                    if(data){
+                        $('#jsonqqsc').jsonViewer(data.data);
+                        $('#jsonsc').jsonViewer(data.response);
+                        $('#loading').hide();
+                        console.log(data);
+                    } else {
+
+                    }
+                },
+                error:function (jqXHR) {
+                    $('#loading').hide();
+                    alert("发生错误："+jqXHR.responseText);
+                }
+            });
+        }
+        function postyj() {
+            var radioyj= getRadioBoxValue("radioyj");
+            var creditIdyj= getInputValue("textyj");
+            var dateyj= getInputValue("dateyj");
+            console.log(dateyj);
+            $('#loading').show();
+            $.ajax({
+                type:"get",
+                url:doman+"/sytYJTJ?env="+radioyj+"&creditId="+creditIdyj+"&touchWarningDate="+dateyj,
+                dataType:"json",
+                success:function (data) {
+                    if(data){
+                        $('#jsonqqyj').jsonViewer(data.data);
+                        $('#jsonyj').jsonViewer(data.response);
+                        $('#loading').hide();
+                        console.log(data);
+                    } else {
+
+                    }
+                },
+                error:function (jqXHR) {
+                    $('#loading').hide();
+                    alert("发生错误："+jqXHR.responseText);
+                }
+            });
+        }
+        function getRadioBoxValue(radioName) {
+            var radio = document.getElementsByName(radioName);
+            for (i = 0; i < radio.length ; i++ ){
+                if(radio[i].checked){
+                    return radio[i].value;
+                }
+            }
+        }
+        function getInputValue(inputId) {
+            var input = document.getElementById(inputId);
+            return input.value ;
+        }
+
+    </script>
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div id="loading" style="position: fixed;top: 0;right: 0;left: 0;bottom: 0;background-color: rgba(0,0,0,0.2);z-index: 10;display: none">
+        <div class="sk-spinner sk-spinner-cube-grid" style="position: fixed;top: 49%;left: 49%">
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>接口功能简介</h5>
+                </div>
+                <div class="ibox-content">
+                    <p>通关保项目对外接口服务如下：</p>
+                    <ul>
+                        <li>1.授信</li>
+                        <li>2.授信复审风控回调</li>
+                        <li>3.开立保函</li>
+                        <li>4.上传缴费凭证</li>
+                        <li>5.预警添加</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>1.调用授信接口</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" id="commentForm" onsubmit="return false" action="##" method="get">
+                        <div>
+                            <label class="col-sm-3 control-label">环境：</label>
+                            <label><input type="radio" name="radiosx" value="test" checked="true">test</label>&nbsp;&nbsp;
+                            <label><input type="radio" name="radiosx" value="qa">qa</label>&nbsp;&nbsp;
+                            <label><input type="radio" name="radiosx" value="product">product</label>
+                        </div>
+                        <br>
+                        <div>
+                            <label class="col-sm-3 control-label">请输入企业名称：</label>
+                            <label><input type="text" id="textqy" style="width: 400px;length:20px" value="" placeholder="若不填则默认为随机生成"></label>
+                        </div>
+                        <br>
+                        <div>
+                            <label class="col-sm-3 control-label">请输入企业统一社会信用代码：</label>
+                            <label><input type="text" id="textty" style="width: 400px;length:20px" value="" placeholder="若不填则默认为随机生成"></label>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">请求参数：</label>
+                            <div class="col-sm-8">
+                                <pre id="jsonqq">
+
+                                </pre>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">返回结果：</label>
+                            <div class="col-sm-8">
+                                <pre id="jsonsx">
+
+                                </pre>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" onclick="postsx()">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>2.授信复审风控回调</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" id="commentForm1" onsubmit="return false" action="##" method="get">
+                        <div>
+                            <label class="col-sm-3 control-label">环境：</label>
+                            <label><input type="radio" name="radiofk" value="test" checked="true">test</label>&nbsp;&nbsp;
+                            <label><input type="radio" name="radiofk" value="qa">qa</label>&nbsp;&nbsp;
+                            <label><input type="radio" name="radiofk" value="product">product</label>
+                        </div>
+                        <br>
+                        <div>
+                            <label class="col-sm-3 control-label">请输入creditId：</label>
+                            <label><input type="text" id="textfk" style="width: 400px;length:20px" value="" placeholder="请先在授信复审时点击税银通风控回调，再在此处输入creditId"></label>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">请求参数：</label>
+                            <div class="col-sm-8">
+                                <pre id="jsonqqfk">
+
+                                </pre>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">返回结果：</label>
+                            <div class="col-sm-8">
+                                <pre id="jsonfk">
+
+                                </pre>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" onclick="postfk()">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>3.开立保函</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" id="commentForm2" onsubmit="return false" action="##" method="get">
+                        <div>
+                            <label class="col-sm-3 control-label">环境：</label>
+                            <label><input type="radio" name="radiokl" value="test" checked="true">test</label>&nbsp;&nbsp;
+                            <label><input type="radio" name="radiokl" value="qa">qa</label>&nbsp;&nbsp;
+                            <label><input type="radio" name="radiokl" value="product">product</label>
+                        </div>
+                        <br>
+                        <div>
+                            <label class="col-sm-3 control-label">请输入creditId：</label>
+                            <label><input type="text" id="textkl" style="width: 400px;length:20px" value="" placeholder="请输入授信通过的creditId"></label>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">请求参数：</label>
+                            <div class="col-sm-8">
+                                <pre id="jsonqqkl">
+
+                                </pre>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">返回结果：</label>
+                            <div class="col-sm-8">
+                                <pre id="jsonkl">
+
+                                </pre>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" onclick="postkl()">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>4.上传缴费凭证</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" id="commentForm3" onsubmit="return false" action="##" method="get">
+                        <div>
+                            <label class="col-sm-3 control-label">环境：</label>
+                            <label><input type="radio" name="radiosc" value="test" checked="true">test</label>&nbsp;&nbsp;
+                            <label><input type="radio" name="radiosc" value="qa">qa</label>&nbsp;&nbsp;
+                            <label><input type="radio" name="radiosc" value="product">product</label>
+                        </div>
+                        <br>
+                        <div>
+                            <label class="col-sm-3 control-label">请输入guaranteeId：</label>
+                            <label><input type="text" id="textsc"  style="width: 400px;length:20px" value="" placeholder="请输入需要上传缴费凭证的guaranteeId"></label>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">请求参数：</label>
+                            <div class="col-sm-8">
+                                <pre id="jsonqqsc">
+
+                                </pre>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">返回结果：</label>
+                            <div class="col-sm-8">
+                                <pre id="jsonsc">
+
+                                </pre>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" onclick="postsc()">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="ibox float-e-margins">
+            <div class="col-sm-12">
+                <div class="ibox-title">
+                    <h5>5.预警添加</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" id="commentForm4" onsubmit="return false" action="##" method="get">
+                        <div>
+                            <label class="col-sm-3 control-label">环境：</label>
+                            <label><input type="radio" name="radioyj" value="test" checked="true">test</label>&nbsp;&nbsp;
+                            <label><input type="radio" name="radioyj" value="qa">qa</label>&nbsp;&nbsp;
+                            <label><input type="radio" name="radioyj" value="product">product</label>
+                        </div>
+                        <br>
+                        <div>
+                            <label class="col-sm-3 control-label">请输入creditId：</label>
+                            <label><input type="text" id="textyj" style="width: 400px;length:20px" value="" placeholder="请输入授信的creditId"></label>
+                        </div>
+                        <br>
+                        <div>
+                            <label class="col-sm-3 control-label">请选择发生预警的日期：</label>
+                            <label><input type="date" id="dateyj" name="dateyj1"></label>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">请求参数：</label>
+                            <div class="col-sm-8">
+                                <pre id="jsonqqyj">
+
+                                </pre>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">返回结果：</label>
+                            <div class="col-sm-8">
+                                <pre id="jsonyj">
+
+                                </pre>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" onclick="postyj()">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 全局js -->
+<script src="../js/jquery.min.js?v=2.1.4"></script>
+<script src="../js/bootstrap.min.js?v=3.3.6"></script>
+
+<!-- 自定义js -->
+<script src="../js/content.js?v=1.0.0"></script>
+
+<!-- jQuery Validation plugin javascript-->
+<script src="../js/plugins/validate/jquery.validate.min.js"></script>
+<script src="../js/plugins/validate/messages_zh.min.js"></script>
+
+<script src="../js/demo/form-validate-demo.js"></script>
+<script src="../js/jsonview/jquery.json-viewer.js"></script>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+<!--统计代码，可删除-->
+</body>
+</html>

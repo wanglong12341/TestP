@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三方数据平台-首佳产品</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="../css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="../css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="../css/animate.css" rel="stylesheet">
+    <link href="../css/style.css?v=4.1.0" rel="stylesheet">
+    <link href="../css/jsonview/jquery.json-viewer.css" type="text/css" rel="stylesheet">
+    <script>
+        var doman = "";
+        // var doman = "http://localhost:8011";
+        function postsj() {
+            var radiosj = getRadioBoxValue("radiosj");
+            var selectsj = getSelectValue("sourcepackage");
+            $('#loading').show();
+            $.ajax({
+                type:"get",
+                url:doman+"/sfptSjDy?env="+radiosj+"&packageId="+selectsj,
+                dataType:"json",
+                success:function (data) {
+                    if(data){
+                        $('#jsonsj11').jsonViewer(data.data);
+                        $('#jsonsj').jsonViewer(data.response);
+
+                        $('#loading').hide();
+                        console.log(data);
+                    } else {
+                    }
+                },
+                error:function (jqXHR) {
+                    $('#loading').hide();
+                    alert("发生错误："+jqXHR.responseText);
+                }
+            });
+        }
+        function postsj2() {
+            var radiosj = getRadioBoxValue("radiosj2");
+            var selectsj = getSelectValue("sourcepackage2");
+            $('#loading').show();
+            $.ajax({
+                type:"get",
+                url:doman+"/sfptSjDy902?env="+radiosj+"&packageId="+selectsj,
+                dataType:"json",
+                success:function (data) {
+                    if(data){
+                        $('#jsonsj22').jsonViewer(data.data);
+                        $('#jsonsj2').jsonViewer(data.response);
+
+                        $('#loading').hide();
+                        console.log(data);
+                    } else {
+                    }
+                },
+                error:function (jqXHR) {
+                    $('#loading').hide();
+                    $('#jsonsj2').jsonViewer(jqXHR.responseText);
+                    // alert("发生错误："+jqXHR.responseText);
+                }
+            });
+        }
+        function postsj4() {
+            var radiosj = getRadioBoxValue("radiosj4");
+            var selectsj = getSelectValue("sourcepackage4");
+            $('#loading').show();
+            $.ajax({
+                type:"get",
+                url:doman+"/sfptSjDyYb?env="+radiosj+"&packageId="+selectsj,
+                dataType:"json",
+                success:function (data) {
+                    if(data){
+                        $('#jsonsj44').jsonViewer(data.data);
+                        $('#jsonsj4').jsonViewer(data.response);
+
+                        $('#loading').hide();
+                        console.log(data);
+                    } else {
+                    }
+                },
+                error:function (jqXHR) {
+                    $('#loading').hide();
+                    $('#jsonsj4').jsonViewer(jqXHR.responseText);
+                    // alert("发生错误："+jqXHR.responseText);
+                }
+            });
+        }
+        function getRadioBoxValue(radioName) {
+            var radio = document.getElementsByName(radioName);
+            for (i = 0 ; i < radio.length ; i++) {
+                if(radio[i].checked){
+                    return radio[i].value ;
+                }
+            }
+        }
+        function getSelectValue(selectId) {
+            var select = document.getElementById(selectId);
+            return select.value ;
+        }
+    </script>
+
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div id="loading" style="position: fixed;top: 0;right: 0;left: 0;bottom: 0;background-color: rgba(0,0,0,0.2);z-index: 10;display: none">
+        <div class="sk-spinner sk-spinner-cube-grid" style="position: fixed;top: 49%;left: 49%">
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+            <div class="sk-cube"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>接口功能简介</h5>
+                </div>
+                <div class="ibox-content">
+                    <p>首佳产品接口服务如下：</p>
+                    <ul>
+                        <li>1.首佳产品901-精确查找询价</li>
+                        <li>2.首佳产品902-人工询价</li>
+                        <li>3.首佳产品904-批量复估</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>1.首佳产品901调用-精确查找询价</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" id="commentForm" onsubmit="return false" action="##" method="get">
+                        <div>
+                            <label class="col-sm-3 control-label">环境：</label>
+                            <label><input type="radio" name="radiosj" value="test" checked="true">test</label>&nbsp;&nbsp;
+                            <label><input type="radio" name="radiosj" value="qa">qa</label>&nbsp;&nbsp;
+                            <label><input type="radio" name="radiosj" value="product">product</label>
+                        </div>
+                        <br>
+                        <div>
+                            <label class="col-sm-3 control-label">产品packageId:</label>
+                            <label><select id="sourcepackage">
+                                <option value="901">901</option>
+
+                            </select></label>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">请求参数：</label>
+                            <div class="col-sm-8">
+                                <pre id="jsonsj11">
+                                    <!--<textarea id="103" name="comment" class="form-control"></textarea>-->
+                                </pre>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">返回结果：</label>
+                            <div class="col-sm-8">
+                                <pre id="jsonsj">
+
+                                </pre>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" onclick="postsj()">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>2.首佳产品902-人工询价</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" id="commentForm2" onsubmit="return false" action="##" method="get">
+                        <div>
+                            <label class="col-sm-3 control-label">环境：</label>
+                            <label><input type="radio" name="radiosj2" value="test" checked="true">test</label>&nbsp;&nbsp;
+                            <label><input type="radio" name="radiosj2" value="qa">qa</label>&nbsp;&nbsp;
+                            <label><input type="radio" name="radiosj2" value="product">product</label>
+                        </div>
+                        <br>
+                        <div>
+                            <label class="col-sm-3 control-label">产品packageId:</label>
+                            <label><select id="sourcepackage2">
+                                <option value="902">902</option>
+
+                            </select></label>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">请求参数：</label>
+                            <div class="col-sm-8">
+                                <pre id="jsonsj22">
+                                    <!--<textarea id="103" name="comment" class="form-control"></textarea>-->
+                                </pre>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">返回结果：</label>
+                            <div class="col-sm-8">
+                                <pre id="jsonsj2">
+
+                                </pre>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" onclick="postsj2()">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>3.首佳产品904-批量复估</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" id="commentForm4" onsubmit="return false" action="##" method="get">
+                        <div>
+                            <label class="col-sm-3 control-label">环境：</label>
+                            <label><input type="radio" name="radiosj4" value="test" checked="true">test</label>&nbsp;&nbsp;
+                            <label><input type="radio" name="radiosj4" value="qa">qa</label>&nbsp;&nbsp;
+                            <label><input type="radio" name="radiosj4" value="product">product</label>
+                        </div>
+                        <br>
+                        <div>
+                            <label class="col-sm-3 control-label">产品packageId:</label>
+                            <label><select id="sourcepackage4">
+                                <option value="904">904</option>
+
+                            </select></label>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">请求参数：</label>
+                            <div class="col-sm-8">
+                                <pre id="jsonsj44">
+                                    <!--<textarea id="103" name="comment" class="form-control"></textarea>-->
+                                </pre>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">返回结果：</label>
+                            <div class="col-sm-8">
+                                <pre id="jsonsj4">
+
+                                </pre>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" onclick="postsj4()">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- 全局js -->
+<script src="../js/jquery.min.js?v=2.1.4"></script>
+<script src="../js/bootstrap.min.js?v=3.3.6"></script>
+
+<!-- 自定义js -->
+<script src="../js/content.js?v=1.0.0"></script>
+
+<!-- jQuery Validation plugin javascript-->
+<script src="../js/plugins/validate/jquery.validate.min.js"></script>
+<script src="../js/plugins/validate/messages_zh.min.js"></script>
+
+<script src="../js/demo/form-validate-demo.js"></script>
+<script src="../js/jsonview/jquery.json-viewer.js"></script>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+<!--统计代码，可删除-->
+</body>
+</html>
